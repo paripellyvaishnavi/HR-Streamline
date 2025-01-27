@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    header {
+      background: linear-gradient(135deg, #4e73df, #1cc88a);
+      color: white;
+      padding: 20px 60px;
+      text-align: center;
+      font-size: 1.5rem;
+      position: relative;
+    }
+
+    .hamburger {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #343a40;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 1.5rem;
+      border-radius: 5px;
+    }
+
+    .container {
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: #343a40;
+      color: white;
+      position: fixed;
+      height: 100vh;
+      top: 0;
+      left: 0;
+      padding: 20px;
+      transform: translateX(-250px);
+      transition: transform 0.3s ease;
+    }
+
+    .sidebar.active {
+      transform: translateX(0);
+    }
+
+    .sidebar a {
+      display: block;
+      padding: 15px;
+      margin: 10px 0;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background 0.3s;
+    }
+
+    .sidebar a:hover {
+      background-color: #007bff;
+    }
+
+    .content {
+      margin-left: 20px;
+      padding: 20px;
+      flex-grow: 1;
+    }
+
+    .content.active {
+      margin-left: 270px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+      font-size: 1rem;
+    }
+
+    .btn.add {
+      background-color: #1cc88a;
+    }
+
+    .btn.add:hover {
+      background-color: #17a673;
+    }
+
+    .btn.delete {
+      background-color: #e74a3b;
+    }
+
+    .btn.delete:hover {
+      background-color: #c53030;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 15px;
+      text-align: center;
+    }
+
+    th {
+      background: #f8f9fc;
+      color: #4e73df;
+    }
+    button {
+    padding: 0.5em 1em;
+    margin: 0.2em;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+    }
+button:hover {
+    background-color: #0056b3;
+}
+
+
+    /* Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background: white;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 500px;
+    }
+    .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1c1c1c; /* Black */
+    color: #ffd700; /* Gold for text or accents */
+  }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color:black; /* Dark blue-gray */
+  color: rgb(8, 7, 7);
+  height: 60px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav ul {
+  display:flex;
+  justify-content:center;
+  background-color:black;
+  padding:10px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 23px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffd700; /* Gold for text or accents */
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+nav ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+  color:#f39c12;
+}
+.hidden {
+  display: none;
+}
+  </style>
+</head>
+<body>
+  <nav>
+    <ul class="nav-links">
+      <li><a href="pro.html">Dashboard</a></li>
+      <li><a href="recuritment.html">Recruitment</a></li>
+      <li><a href="payroll.html">Payroll</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="admin-panel.html">Admin</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+  <header>
+    <button class="hamburger" onclick="toggleSidebar()">☰</button>
+    Admin Dashboard
+  </header>
+  <div class="container">
+    <div class="sidebar" id="sidebar">
+      <a href="#" onclick="showSection('jobPostings')">Job Postings</a>
+      <a href="#" onclick="showSection('interviewSchedules')">Interview Schedules</a>
+      <a href="#" onclick="showSection('applications')">Applications</a>
+    </div>
+    <div class="content" id="content">
+      <!-- Job Postings Section -->
+      <div id="jobPostings" class="section">
+        <h2>Manage Job Postings</h2>
+        <button class="btn add" onclick="openModal('jobModal')">Add New Job Posting</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Department</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="jobPostingsTable"></tbody>
+        </table>
+      </div>
+
+      <!-- Interview Schedules Section -->
+      <div id="interviewSchedules" class="section" style="display: none;">
+        <h2>Manage Interview Schedules</h2>
+        <button class="btn add" onclick="openModal('scheduleModal')">Add Schedule</button>
+        <table>
+          <thead>
+            <tr>
+              <th>Candidate Name</th>
+              <th>Job Title</th>
+              <th>Interview Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="interviewSchedulesTable"></tbody>
+        </table>
+      </div>
+
+      <!-- Applications Section -->
+      <div id="applications" class="section" style="display: none;">
+        <h2>Manage Applications</h2>
+        <table id="resumeTable">
+                <thead>
+                    <tr>
+                        <th>Candidate Name</th>
+                        <th>Resume</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td><a href="#" target="_blank">View Resume</a></td>
+                        <td>Pending</td>
+                        <td>
+                            <button onclick="shortlistCandidate(this)">Shortlist</button>
+                            <button onclick="rejectCandidate(this)">Reject</button>
+                        </td>
+                    </tr>
+                    <!-- Additional rows can be dynamically added -->
+                </tbody>
+            </table>
+        </div>
+<!-- Rejection Reason Modal -->
+        <div id="rejectionModal" class="modal">
+            <div class="modal-content">
+                <h2>Rejection Reason</h2>
+                <textarea id="rejectionReason" rows="4" placeholder="Enter reason for rejection..."></textarea>
+                <div>
+                    <button onclick="sendRejection()">Send Rejection</button>
+                    <button onclick="closeModal()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Rejection Modal -->
+  <div class="modal-overlay" id="modalOverlay"></div>
+  <div class="modal" id="rejectionModal">
+    <h3>Reject Candidate</h3>
+    <p>Please provide a reason for rejection:</p>
+    <textarea id="rejectionReason" rows="4" style="width: 100%;"></textarea>
+    <br><br>
+    <button onclick="sendRejection()">Send Rejection</button>
+    <button onclick="closeModal()">Cancel</button>
+  </div>
+
+
+  <!-- Job Posting Modal -->
+  <div id="jobModal" class="modal">
+    <div class="modal-content">
+      <h3>Add New Job Posting</h3>
+      <form id="jobForm">
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobTitle" required><br><br>
+        <label for="department">Department:</label>
+        <input type="text" id="department" required><br><br>
+        <button type="submit" class="btn add">Add Job</button>
+        <button type="button" class="btn delete" onclick="closeModal('jobModal')">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Schedule Modal -->
+  <div id="scheduleModal" class="modal">
+    <div class="modal-content">
+      <h3>Add Interview Schedule</h3>
+      <form id="scheduleForm">
+        <label for="candidateName">Candidate Name:</label>
+        <input type="text" id="candidateName" required><br><br>
+        <label for="jobTitle">Job Title:</label>
+        <input type="text" id="jobScheduleTitle" required><br><br>
+        <label for="interviewDate">Interview Date:</label>
+        <input type="date" id="interviewDate" required><br><br>
+        <button type="submit" class="btn add">Add Schedule</button>
+        <button type="button" class="btn delete" onclick="closeModal('scheduleModal')">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("active");
+      document.getElementById("content").classList.toggle("active");
+    }
+
+    function showSection(id) {
+      document.querySelectorAll(".section").forEach(section => section.style.display = "none");
+      document.getElementById(id).style.display = "block";
+    }
+
+    function openModal(id) {
+      document.getElementById(id).style.display = "block";
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).style.display = "none";
+    }
+
+    document.getElementById("jobForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const jobTitle = document.getElementById("jobTitle").value;
+      const department = document.getElementById("department").value;
+      const table = document.getElementById("jobPostingsTable");
+      table.innerHTML += `
+        <tr>
+          <td>${jobTitle}</td>
+          <td>${department}</td>
+          <td><button class="btn delete" onclick="deleteRow(this)">Delete</button></td>
+        </tr>`;
+      closeModal("jobModal");
+    });
+
+    document.getElementById("scheduleForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+      const candidateName = document.getElementById("candidateName").value;
+      const jobTitle = document.getElementById("jobScheduleTitle").value;
+      const interviewDate = document.getElementById("interviewDate").value;
+      const table = document.getElementById("interviewSchedulesTable");
+      table.innerHTML += `
+        <tr>
+          <td>${candidateName}</td>
+          <td>${jobTitle}</td>
+          <td>${interviewDate}</td>
+          <td><button class="btn delete" onclick="deleteRow(this)">Delete</button></td>
+        </tr>`;
+      closeModal("scheduleModal");
+    });
+
+    function deleteRow(button) {
+      button.closest("tr").remove();
+    }
+     let candidates = [
+      { id: 1, name: "John Doe", resume: "resume-john.pdf", status: "Pending" },
+      { id: 2, name: "Jane Smith", resume: "resume-jane.pdf", status: "Pending" },
+    ];
+
+    let rejectionIndex = null;
+
+    function loadTable() {
+      const tableBody = document.querySelector("#resumeTable tbody");
+      tableBody.innerHTML = ""; // Clear table
+
+      candidates.forEach((candidate, index) => {
+        const row = `
+          <tr>
+            <td>${candidate.name}</td>
+            <td><a href="${candidate.resume}" target="_blank">View Resume</a></td>
+            <td>${candidate.status}</td>
+            <td>
+              <button class="shortlist" onclick="shortlistCandidate(${index})">Shortlist</button>
+              <button class="reject" onclick="rejectCandidate(${index})">Reject</button>
+            </td>
+          </tr>
+        `;
+        tableBody.innerHTML += row;
+      });
+    }
+
+    function shortlistCandidate(index) {
+      candidates[index].status = "Shortlisted";
+      alert(`Candidate ${candidates[index].name} has been shortlisted and the resume forwarded to the manager.`);
+      loadTable();
+    }
+
+    function rejectCandidate(index) {
+      rejectionIndex = index;
+      document.getElementById("modalOverlay").style.display = "block";
+      document.getElementById("rejectionModal").style.display = "block";
+    }
+
+    function sendRejection() {
+      const reason = document.getElementById("rejectionReason").value.trim();
+      if (!reason) {
+        alert("Please provide a reason for rejection.");
+        return;
+      }
+
+      candidates[rejectionIndex].status = `Rejected (Reason: ${reason})`;
+      alert(`Rejection email sent to ${candidates[rejectionIndex].name}.`);
+      closeModal();
+      loadTable();
+    }
+
+    function closeModal() {
+      document.getElementById("modalOverlay").style.display = "none";
+      document.getElementById("rejectionModal").style.display = "none";
+      document.getElementById("rejectionReason").value = "";
+    }
+
+    // Load table on page load
+    loadTable();
+    // Function to close modal
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'none'; // Hide the modal
+    }
+}
+
+// Optional: Open modal for demonstration
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.style.display = 'block'; // Show the modal
+    }
+}
+
+// Close the modal when clicked outside the modal content
+window.onclick = function(event) {
+    const modal = document.getElementById('jobModal');
+    if (event.target === modal) {
+        closeModal('jobModal');
+    }
+};
+// Function to close modal
+
+// Function to send rejection (you can replace with actual logic)
+function sendRejection() {
+    const rejectionReason = document.getElementById('rejectionReason').value;
+    alert('Rejection reason sent: ' + rejectionReason);
+    closeModal('jobModal'); // Close the modal after sending the rejection
+}
+
+// Function to open the modal (if needed)
+
+
+// Close modal when clicking on overlay (outside the modal)
+document.getElementById('modalOverlay').addEventListener('click', closeModal);
+
+function closeModal() {
+    document.getElementById('rejectionModal').style.display = 'none';  // Hide the modal
+    document.getElementById('modalOverlay').style.display = 'none';  // Hide the overlay
+}
+
+// Function to send rejection (you can replace with actual logic)
+function sendRejection() {
+    const rejectionReason = document.getElementById('rejectionReason').value;
+    alert('Rejection reason sent: ' + rejectionReason);
+    closeModal(); // Close the modal after sending the rejection
+}
+document.getElementById('modalOverlay').addEventListener('click', closeModal);
+
+// Function to open modal
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    const overlay = document.getElementById('modalOverlay');
+    modal.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+// Function to close modal
+function closeModal() {
+    const modals = document.querySelectorAll('.modal');
+    const overlay = document.getElementById('modalOverlay');
+    modals.forEach(modal => modal.style.display = 'none');
+    overlay.style.display = 'none';
+}
+
+// Function to handle sending rejection reason
+function sendRejection() {
+    const rejectionReason = document.getElementById('rejectionReason').value;
+    if (rejectionReason.trim() === "") {
+        alert("Please provide a reason for rejection.");
+        return;
+    }
+    alert("Rejection reason sent: " + rejectionReason);
+    closeModal(); // Close the modal after sending rejection
+}
+
+// Function to handle adding a job posting
+document.getElementById('jobForm')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const jobTitle = document.getElementById('jobTitle').value;
+    const department = document.getElementById('department').value;
+
+    if (jobTitle && department) {
+        const table = document.getElementById('jobPostingsTable');
+        const row = table.insertRow();
+        row.innerHTML = `<td>${jobTitle}</td><td>${department}</td><td><button onclick="editJob(this)">Edit</button><button onclick="deleteJob(this)">Delete</button></td>`;
+        closeModal();
+    } else {
+        alert("Please fill out all fields.");
+    }
+});
+
+// Function to delete a job posting
+function deleteJob(button) {
+    const row = button.parentElement.parentElement;
+    row.remove();
+}
+
+// Function to edit a job posting
+function editJob(button) {
+    const row = button.parentElement.parentElement;
+    const jobTitle = row.cells[0].textContent;
+    const department = row.cells[1].textContent;
+    document.getElementById('jobTitle').value = jobTitle;
+    document.getElementById('department').value = department;
+    openModal('jobModal');
+}
+
+// Function to handle adding an interview schedule
+document.getElementById('scheduleForm')?.addEventListener('submit', function(event) {
+    event.preventDefault();
+    const candidateName = document.getElementById('candidateName').value;
+    const jobTitle = document.getElementById('jobScheduleTitle').value;
+    const interviewDate = document.getElementById('interviewDate').value;
+
+    if (candidateName && jobTitle && interviewDate) {
+        const table = document.getElementById('interviewSchedulesTable');
+        const row = table.insertRow();
+        row.innerHTML = `<td>${candidateName}</td><td>${jobTitle}</td><td>${interviewDate}</td><td><button onclick="editSchedule(this)">Edit</button><button onclick="deleteSchedule(this)">Delete</button></td>`;
+        closeModal();
+    } else {
+        alert("Please fill out all fields.");
+    }
+});
+
+// Function to delete an interview schedule
+function deleteSchedule(button) {
+    const row = button.parentElement.parentElement;
+    row.remove();
+}
+
+// Function to edit an interview schedule
+function editSchedule(button) {
+    const row = button.parentElement.parentElement;
+    const candidateName = row.cells[0].textContent;
+    const jobTitle = row.cells[1].textContent;
+    const interviewDate = row.cells[2].textContent;
+    document.getElementById('candidateName').value = candidateName;
+    document.getElementById('jobScheduleTitle').value = jobTitle;
+    document.getElementById('interviewDate').value = interviewDate;
+    openModal('scheduleModal');
+}
+
+// Function to handle candidate rejection (triggered by reject button)
+function rejectCandidate(button) {
+    openModal('rejectionModal');
+}
+
+// Event listener for modal overlay click to close modal
+document.getElementById('modalOverlay')?.addEventListener('click', closeModal);
+
+  </script>
+</body>
+</html>

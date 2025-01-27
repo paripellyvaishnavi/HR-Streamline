@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payroll</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Payroll Page Styles */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  margin-top: 20px;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px 10px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Section Styles */
+section {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section h2 {
+    margin-bottom: 10px;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1c1c1c; /* Black */
+    color: #ffd700; /* Gold for text or accents */
+  }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color:black; /* Dark blue-gray */
+  color: rgb(8, 7, 7);
+  height: 60px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav ul {
+  display:flex;
+  justify-content:center;
+  background-color:black;
+  padding:10px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 23px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffd700; /* Gold for text or accents */
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+nav ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+  color:#f39c12;
+}
+.hidden {
+  display: none;
+}
+.salary-calculator {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.salary-calculator label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.salary-calculator input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.salary-calculator button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.salary-calculator button:hover {
+    background-color: #45a049;
+}
+
+#salaryResult {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+/* Payroll History Table */
+.payroll-history {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payroll-history table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.payroll-history th, .payroll-history td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.payroll-history th {
+    background-color: #f2f2f2;
+}
+
+.payroll-history a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.payroll-history a:hover {
+    text-decoration: underline;
+}
+
+.bonus-tracking {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.bonus-tracking form {
+    margin-bottom: 20px;
+}
+
+.bonus-tracking label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.bonus-tracking input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bonus-tracking button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bonus-tracking button:hover {
+    background-color: #45a049;
+}
+
+#bonusTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#bonusTable th, #bonusTable td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#bonusTable th {
+    background-color: #f2f2f2;
+}
+.paystub-download {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.paystub-download form {
+    margin-bottom: 20px;
+}
+
+.paystub-download label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.paystub-download input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.paystub-download button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.paystub-download button:hover {
+    background-color: #45a049;
+}
+
+#paystubDetails {
+    margin-top: 20px;
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+.payroll-chat {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 9999;
+}
+
+.chat-widget {
+    display: none; /* Initially hidden */
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    border-radius: 8px;
+}
+
+.chat-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header button {
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.chat-messages {
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 10px 0;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.chat-messages p {
+    margin: 5px 0;
+}
+
+.chat-widget input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.chat-widget button {
+    padding: 8px 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chat-widget button:hover {
+    background-color: #45a049;
+}
+
+
+.faq-item {
+    margin-bottom: 10px;
+}
+
+.faq-question {
+    width: 100%;
+    padding: 10px;
+    text-align: left;
+    background-color: #555;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.faq-question:hover {
+    background-color: #e9e9e9;
+}
+
+.faq-answer {
+    display: none;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.faq-answer p {
+    margin: 0;
+}
+.payroll-compliance {
+    background-color: #f9f9f9;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payroll-compliance h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.payroll-compliance h3 {
+    font-size: 20px;
+    color: #444;
+}
+
+.payroll-compliance p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+
+.payroll-compliance ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.payroll-compliance li {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.payroll-compliance a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.payroll-compliance a:hover {
+    text-decoration: underline;
+}
+.payroll-notifications {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payroll-notifications h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.payroll-notifications ul {
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+}
+
+.payroll-notifications li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#notificationForm {
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#notificationForm h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+#notificationForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+#notificationForm input,
+#notificationForm select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+#notificationForm button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#notificationForm button:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="pro.html">Dashboard</a></li>
+      <li><a href="recuritment.html">Recruitment</a></li>
+      <li><a href="payroll.html">Payroll</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="admin-panel.html">Admin</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Payroll Section</h1>
+    </header>
+    <main>
+        <p>Here, you can manage employee salaries, deductions, and payroll analytics. Ensure accurate and efficient payroll management.</p>
+
+        <!-- Back to Dashboard Button -->
+
+        <!-- Employee Salaries Section -->
+        <section id="employee-salaries">
+            <h2>Employee Salaries</h2>
+            <p>View and manage detailed salary records for all employees.</p>
+            <button onclick="openSalaryManager()">Manage Salaries</button>
+        </section>
+
+        <!-- Deductions Section -->
+        <section id="deductions">
+            <h2>Deductions</h2>
+            <p>Apply and track deductions such as taxes and benefits.</p>
+            <button onclick="openDeductionsManager()">Manage Deductions</button>
+        </section>
+
+        <!-- Payroll Analytics Section -->
+        <section id="payroll-analytics">
+            <h2>Payroll Analytics</h2>
+            <p>Analyze payroll trends and insights for better financial decisions.</p>
+            <button onclick="openAnalytics()">View Analytics</button>
+        </section>
+        <section class="salary-calculator">
+          <h2>Salary Calculator</h2>
+          <form id="salaryForm">
+              <label for="hoursWorked">Hours Worked:</label>
+              <input type="number" id="hoursWorked" required>
+      
+              <label for="hourlyRate">Hourly Rate ($):</label>
+              <input type="number" id="hourlyRate" required>
+      
+              <label for="deductions">Deductions ($):</label>
+              <input type="number" id="deductions" required>
+      
+              <button type="button" onclick="calculateSalary()">Calculate Salary</button>
+          </form>
+      
+          <div id="salaryResult" style="display:none;">
+              <h3>Salary Breakdown</h3>
+              <p>Gross Salary: $<span id="grossSalary">0</span></p>
+              <p>Deductions: $<span id="totalDeductions">0</span></p>
+              <p>Net Salary: $<span id="netSalary">0</span></p>
+          </div>
+      </section>
+      <section class="payroll-history">
+          <h2>Payroll History</h2>
+          <table>
+              <thead>
+                  <tr>
+                      <th>Pay Period</th>
+                      <th>Gross Salary</th>
+                      <th>Deductions</th>
+                      <th>Net Salary</th>
+                      <th>Download Payslip</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                      <td>January 2025</td>
+                      <td>$3,500.00</td>
+                      <td>$500.00</td>
+                      <td>$3,000.00</td>
+                      <td><a href="payslip_jan2025.pdf" download>Download</a></td>
+                  </tr>
+                  <tr>
+                      <td>December 2024</td>
+                      <td>$3,500.00</td>
+                      <td>$400.00</td>
+                      <td>$3,100.00</td>
+                      <td><a href="payslip_dec2024.pdf" download>Download</a></td>
+                  </tr>
+                  <!-- Add more rows for previous months -->
+              </tbody>
+          </table>
+      </section>
+      <section class="bonus-tracking">
+        <h2>Bonus & Incentive Tracking</h2>
+    
+        <!-- Add or Update Bonus Form -->
+        <form id="bonusForm">
+            <label for="employeeName">Employee Name:</label>
+            <input type="text" id="employeeName" required>
+    
+            <label for="bonusAmount">Bonus Amount ($):</label>
+            <input type="number" id="bonusAmount" required>
+    
+            <label for="performance">Performance Rating (1-5):</label>
+            <input type="number" id="performance" min="1" max="5" required>
+    
+            <button type="button" onclick="addBonus()">Add/Update Bonus</button>
+        </form>
+    
+        <!-- Bonus Table -->
+        <table id="bonusTable">
+            <thead>
+                <tr>
+                    <th>Employee Name</th>
+                    <th>Bonus Amount</th>
+                    <th>Performance Rating</th>
+                    <th>Total Bonus</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Bonus records will be inserted here -->
+            </tbody>
+        </table>
+    </section>
+    <section class="paystub-download">
+      <h2>Download Your Pay Stub</h2>
+      
+      <!-- Date Range Selection -->
+      <form id="paystubForm">
+          <label for="startDate">Start Date:</label>
+          <input type="date" id="startDate" required>
+  
+          <label for="endDate">End Date:</label>
+          <input type="date" id="endDate" required>
+  
+          <button type="button" onclick="downloadPayStub()">Download Pay Stub</button>
+      </form>
+      
+      <!-- Display the pay stub details before downloading -->
+      <div id="paystubDetails" style="display:none;">
+          <h3>Pay Stub for the Selected Period</h3>
+          <p><strong>Start Date:</strong> <span id="payStartDate"></span></p>
+          <p><strong>End Date:</strong> <span id="payEndDate"></span></p>
+          <p><strong>Gross Salary:</strong> $<span id="payGrossSalary"></span></p>
+          <p><strong>Deductions:</strong> $<span id="payDeductions"></span></p>
+          <p><strong>Net Salary:</strong> $<span id="payNetSalary"></span></p>
+      </div>
+  </section>
+  <section class="payroll-faq">
+    <h2>Payroll FAQs</h2>
+    <div class="faq-item">
+        <button class="faq-question">How do I view my salary breakdown?</button>
+        <div class="faq-answer">
+            <p>You can view your salary breakdown by using the Salary Calculator or checking your Pay Stub in the 'Payroll History' section.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">When are bonuses paid?</button>
+        <div class="faq-answer">
+            <p>Bonuses are typically paid at the end of each quarter, based on your performance and company results.</p>
+        </div>
+    </div>
+    <div class="faq-item">
+        <button class="faq-question">What deductions are applied to my salary?</button>
+        <div class="faq-answer">
+            <p>Your salary deductions include taxes, insurance premiums, and retirement contributions.</p>
+        </div>
+    </div>
+    </section>
+    <section class="payroll-compliance">
+      <h2>Payroll Compliance Information</h2>
+      <p>
+          At [Company Name], we prioritize compliance with all local, state, and federal payroll laws to ensure fair and legal treatment of our employees. 
+          Below, you'll find important information regarding payroll regulations that affect your pay and benefits.
+      </p>
+      
+      <h3>Labor Laws & Regulations</h3>
+      <ul>
+          <li><strong>Minimum Wage:</strong> We ensure that all employees are paid at least the minimum wage required by law. For more details on minimum wage rates, refer to the <a href="https://www.dol.gov/general/topic/wages/minimumwage" target="_blank">U.S. Department of Labor's Minimum Wage page</a>.</li>
+          <li><strong>Overtime Pay:</strong> Employees are entitled to overtime pay for hours worked over 40 in a week, at a rate of 1.5 times the regular hourly wage. For more information, visit the <a href="https://www.dol.gov/agencies/whd/overtime" target="_blank">Overtime page</a>.</li>
+          <li><strong>Payroll Deductions:</strong> Deductions for taxes, social security, and other government contributions are withheld as required by law. Please refer to the <a href="https://www.irs.gov/" target="_blank">IRS website</a> for more tax-related information.</li>
+      </ul>
+  
+      <h3>Company Compliance</h3>
+      <p>
+          We adhere to the following laws and standards:
+          <ul>
+              <li>Fair Labor Standards Act (FLSA)</li>
+              <li>Family and Medical Leave Act (FMLA)</li>
+              <li>Equal Pay Act (EPA)</li>
+              <li>Occupational Safety and Health Act (OSHA)</li>
+          </ul>
+      </p>
+  
+      <h3>Helpful Links</h3>
+      <ul>
+          <li><a href="https://www.dol.gov/" target="_blank">U.S. Department of Labor</a></li>
+          <li><a href="https://www.irs.gov/" target="_blank">IRS (Internal Revenue Service)</a></li>
+          <li><a href="https://www.ssa.gov/" target="_blank">Social Security Administration</a></li>
+          <li><a href="https://www.osha.gov/" target="_blank">Occupational Safety and Health Administration (OSHA)</a></li>
+      </ul>
+  </section>
+  <section class="payroll-notifications">
+    <h2>Payroll Notifications and Alerts</h2>
+    <ul id="notificationList">
+        <li>Upcoming Payroll: January salary will be credited on January 25th.</li>
+        <li>Tax Update: New tax rates are applicable from February 1st.</li>
+        <li>Benefit Changes: Updated health benefits will reflect in your next paycheck.</li>
+    </ul>
+
+    <form id="notificationForm">
+        <h3>Opt-In for Notifications</h3>
+        <label for="notificationMethod">Notification Method:</label>
+        <select id="notificationMethod" required>
+            <option value="email">Email</option>
+            <option value="sms">SMS</option>
+        </select>
+
+        <label for="contactInfo">Contact Information:</label>
+        <input type="text" id="contactInfo" placeholder="Enter your email or phone number" required>
+
+        <button type="submit">Subscribe</button>
+    </form>
+</section>
+    </main>
+
+    <script>
+      // Function to navigate back to the dashboard
+function goBack() {
+    window.location.href = "payroll.html"; // Replace with your dashboard URL
+}
+
+// Placeholder functions for managing salaries, deductions, and analytics
+function openSalaryManager() {
+    alert("Navigating to Salary Manager...");
+    window.location.href = "employeeSalary.html";
+    // You can replace this with actual navigation or modal functionality
+}
+
+function openDeductionsManager() {
+    alert("Navigating to Deductions Manager...");
+    window.location.href="DeductionManager.html";
+}
+
+function openAnalytics() {
+    alert("Navigating to Payroll Analytics...");
+    window.location.href="openAnalytics.html";
+}
+function calculateSalary() {
+        // Retrieve values from input fields
+        var hoursWorked = parseFloat(document.getElementById("hoursWorked").value);
+        var hourlyRate = parseFloat(document.getElementById("hourlyRate").value);
+        var deductions = parseFloat(document.getElementById("deductions").value);
+
+        // Validate input values to ensure they are numbers and not empty
+        if (!isNaN(hoursWorked) && !isNaN(hourlyRate) && !isNaN(deductions) && hoursWorked > 0 && hourlyRate > 0 && deductions >= 0) {
+            // Calculate gross and net salary
+            var grossSalary = hoursWorked * hourlyRate;
+            var netSalary = grossSalary - deductions;
+
+            // Display results
+            document.getElementById("grossSalary").innerText = grossSalary.toFixed(2);
+            document.getElementById("totalDeductions").innerText = deductions.toFixed(2);
+            document.getElementById("netSalary").innerText = netSalary.toFixed(2);
+
+            // Show the result div
+            document.getElementById("salaryResult").style.display = 'block';
+        } else {
+            // Alert if input values are invalid
+            alert("Please enter valid numbers for all fields.");
+        }
+    }
+    var bonusRecords = [];
+
+// Function to add or update a bonus entry
+function addBonus() {
+    var employeeName = document.getElementById("employeeName").value;
+    var bonusAmount = parseFloat(document.getElementById("bonusAmount").value);
+    var performance = parseInt(document.getElementById("performance").value);
+
+    // Validate inputs
+    if (employeeName && !isNaN(bonusAmount) && !isNaN(performance) && performance >= 1 && performance <= 5) {
+        // Calculate bonus multiplier based on performance rating
+        var bonusMultiplier = 1 + (performance - 1) * 0.1;  // 10% increase per performance point
+        var totalBonus = bonusAmount * bonusMultiplier;
+
+        // Check if the employee already has a record
+        var existingRecord = bonusRecords.find(record => record.name === employeeName);
+
+        if (existingRecord) {
+            // Update existing record
+            existingRecord.bonusAmount = bonusAmount;
+            existingRecord.performance = performance;
+            existingRecord.totalBonus = totalBonus;
+        } else {
+            // Add new record
+            bonusRecords.push({
+                name: employeeName,
+                bonusAmount: bonusAmount,
+                performance: performance,
+                totalBonus: totalBonus
+            });
+        }
+
+        // Update the bonus table
+        updateBonusTable();
+        // Clear input fields
+        document.getElementById("bonusForm").reset();
+    } else {
+        alert("Please fill in all fields correctly.");
+    }
+}
+
+// Function to update the bonus table with the latest records
+function updateBonusTable() {
+    var tableBody = document.getElementById("bonusTable").getElementsByTagName("tbody")[0];
+    tableBody.innerHTML = ""; // Clear existing rows
+
+    // Add each bonus record as a new table row
+    bonusRecords.forEach(function(record) {
+        var row = tableBody.insertRow();
+        row.insertCell(0).innerText = record.name;
+        row.insertCell(1).innerText = record.bonusAmount.toFixed(2);
+        row.insertCell(2).innerText = record.performance;
+        row.insertCell(3).innerText = record.totalBonus.toFixed(2);
+    });
+}
+var samplePayData = {
+    grossSalary: 3500.00,
+    deductions: 500.00,
+    netSalary: 3000.00
+};
+
+// Function to download the pay stub as PDF
+function downloadPayStub() {
+    // Get selected date range
+    var startDate = document.getElementById("startDate").value;
+    var endDate = document.getElementById("endDate").value;
+
+    // Validate date selection
+    if (startDate && endDate) {
+        // Display the pay stub details
+        document.getElementById("payStartDate").innerText = startDate;
+        document.getElementById("payEndDate").innerText = endDate;
+        document.getElementById("payGrossSalary").innerText = samplePayData.grossSalary.toFixed(2);
+        document.getElementById("payDeductions").innerText = samplePayData.deductions.toFixed(2);
+        document.getElementById("payNetSalary").innerText = samplePayData.netSalary.toFixed(2);
+
+        // Show the pay stub details section
+        document.getElementById("paystubDetails").style.display = 'block';
+
+        // Generate and download PDF after showing details
+        generatePDF(startDate, endDate, samplePayData);
+    } else {
+        alert("Please select both start and end dates.");
+    }
+}
+
+// Function to generate the PDF
+function generatePDF(startDate, endDate, payData) {
+    var doc = new jsPDF();
+
+    // Set document title
+    doc.setFontSize(16);
+    doc.text("Pay Stub", 20, 20);
+
+    // Add pay stub details to PDF
+    doc.setFontSize(12);
+    doc.text("Start Date: " + startDate, 20, 40);
+    doc.text("End Date: " + endDate, 20, 50);
+    doc.text("Gross Salary: $" + payData.grossSalary.toFixed(2), 20, 60);
+    doc.text("Deductions: $" + payData.deductions.toFixed(2), 20, 70);
+    doc.text("Net Salary: $" + payData.netSalary.toFixed(2), 20, 80);
+
+    // Download the generated PDF
+    doc.save("paystub_" + startDate + "_to_" + endDate + ".pdf");
+}
+var faqQuestions = document.querySelectorAll('.faq-question');
+faqQuestions.forEach(function (question) {
+    question.addEventListener('click', function () {
+        var answer = this.nextElementSibling;
+        if (answer.style.display === "block") {
+            answer.style.display = "none";
+        } else {
+            answer.style.display = "block";
+        }
+    });
+});
+document.getElementById("notificationForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    // Get form data
+    const method = document.getElementById("notificationMethod").value;
+    const contact = document.getElementById("contactInfo").value;
+
+    // Validate the input
+    if (!contact) {
+        alert("Please enter your contact information.");
+        return;
+    }
+
+    // Display success message
+    alert(`You have successfully subscribed to ${method.toUpperCase()} notifications at ${contact}.`);
+
+    // Optionally, send the subscription details to a backend server here.
+});
+
+    </script>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 HR Management System. All Rights Reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR STREAMLINE</title>
+  <link rel="icon" href="favicon1.ico" type="image/x-icon">
+  <link rel="stylesheet" href="pro.css">
+</head>
+<body>
+  <div id="videoPopup" class="popup-overlay">
+    <div class="popup-content">
+        <span class="close-popup" onclick="closePopup()">&times;</span>
+        <video autoplay muted>
+            <source src="STREAMLINE (1).mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+</div>
+
+  
+  <nav class="navbar">
+    <div class="logo-container">
+      <img src="STREAMLINE (2).png" alt="HR Manager" width="50px" height="50px">
+      <h1 class="logo">|HR STREAMLINE</h1>
+  </div>  
+    <ul class="nav-links">
+      <li><a href="pro.html">Dashboard</a></li>
+      <li><a href="recuritment.html">Recruitment</a></li>
+      <li><a href="payroll.html">Payroll</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="#about-us">About Us</a></li>
+      <li><a href="admin-panel.html">Admin</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+    </ul>
+    <div class="burger">
+      <div class="line"></div>
+      <div class="line"></div>
+      <div class="line"></div>
+    </div>
+    <div class="nav-actions">
+      <a href="login.html" class="btn-primary">Login</a>
+  </div>
+  </nav>
+  <div class="nav-toggle">
+    <i class="fas fa-bars"></i>
+</div>
+
+  <!-- Dashboard Header -->
+  <header>
+    <section id="carousel">
+      <div class="carousel-container">
+        <div class="carousel-slide">
+          <img src="11.png" alt="Welcome to HR Dashboard">
+        </div>
+        <div class="carousel-slide">
+          <img src="Screenshot 2024-11-25 235156.png" width="797" height="432" alt="Hiring Drive">
+        </div>
+        <div class="carousel-slide">
+          <img src="Screenshot 2024-11-25 235123.png" width="797" height="432" alt="Engagement Week">
+        </div>
+      </div>
+      <!-- Navigation Buttons -->
+      <button class="prev">❮</button>
+      <button class="next">❯</button>
+    </section>
+
+  </header>
+
+  <!-- Dashboard Content Section -->
+  <section>
+    
+    <h2>HR Dashboard</h2>
+    <div class="cards">
+      <div class="card pending-onboarding" onclick="showInfo('onboarding')">
+          <h3>Pending Onboarding</h3>
+          <p>12 candidates awaiting onboarding completion.</p>
+      </div>
+      <div class="card" onclick="showInfo('compliance')">
+          <h3>Compliance Issues</h3>
+          <p>3 compliance issues flagged for review.</p>
+      </div>
+      <div class="card" onclick="showInfo('attrition')">
+          <h3>Employee Attrition</h3>
+          <p>Current attrition rate: 8% (last quarter).</p>
+      </div>
+  </div>
+  <div id="details" class="details-container">
+    <p id="onboarding-info" class="detail-info">
+        <strong>Pending Onboarding:</strong> <b>12 candidates awaiting onboarding completion.</b> <br>This process includes completing documentation, attending orientation, and receiving system access.
+      This typically involves several stages:<br>
+Document Submission – Candidates must submit necessary identification, qualifications, and personal information.<br>
+Orientation – A formal session where candidates are introduced to the company culture, policies, and expectations.<br>
+Training – Candidates undergo role-specific training and system access setup, ensuring they're ready to begin their work.<br>
+System Access – Once all paperwork and training are completed, the candidates are provided with access to internal resources and tools.<br>
+Once these steps are completed, the candidates become full-fledged members of the team.
+The onboarding process for new candidates is essential for smoothly integrating them into your organization. It involves completing tasks such as submitting necessary documents, setting up accounts, and familiarizing them with company policies and software. The "12 candidates awaiting onboarding completion" means that these 12 individuals need to finish the required steps before becoming fully active employees.
+<br><br>
+<b>To manage this efficiently:</b></br>
+
+Set clear deadlines for document submissions.</br>
+Provide training resources early.</br>
+Offer support during the process.</br>
+Effective communication and follow-up can help ensure smooth completion for these candidates.</br>
+The onboarding process for candidates typically includes completing essential paperwork, setting up accounts, and undergoing training sessions to familiarize them with company policies and systems. These tasks are crucial for integrating the new hires into the organization and ensuring they are well-prepared to begin their roles.
+
+For the 12 candidates awaiting completion, it's important to set clear deadlines and provide necessary support throughout the process. Timely follow-ups and clear communication will help ensure that they meet the required milestones and transition smoothly into their new roles within the company.
+Pending onboarding is an essential phase where candidates complete administrative tasks and familiarize themselves with their roles within the organization. This includes filling out necessary paperwork, completing training modules, and getting access to required systems and tools.
+
+For the 12 candidates still awaiting completion, timely follow-ups are vital to ensure all steps are finished without delay. It’s also an opportunity to address any questions or issues they might have, helping them transition smoothly into their new positions and ensuring their readiness to contribute effectively.
+</p>
+    <p id="compliance-info" class="detail-info">
+        <strong>Compliance Issues:</strong> There are 3 flagged compliance issues. These issues relate to non-compliance in health & safety and financial reporting. The compliance team is reviewing them.
+        <br>Compliance issues typically arise when an organization identifies discrepancies or potential violations of established policies, laws, or regulations. These issues can include improper documentation, missed deadlines for required filings, or failure to adhere to labor laws or internal procedures. The 3 compliance issues flagged for review should be addressed promptly by reviewing the specific violations, conducting audits, and implementing corrective actions. Ensuring full compliance will help mitigate risks, improve operational efficiency, and maintain a positive organizational reputation.
+        <br>Compliance issues occur when certain policies, regulations, or standards are not properly adhered to, which could lead to legal ramifications, financial penalties, or reputational damage. The three compliance issues flagged for review might involve discrepancies in employee records, missed regulatory filings, or violations related to workplace safety standards. Addressing these promptly ensures that the company remains in good standing with both legal requirements and industry standards.
+
+<br>The review process often includes investigating the nature of each compliance issue, determining its cause, and implementing corrective actions. This might involve retraining staff, revising internal policies, or conducting audits to ensure proper compliance moving forward. By addressing these issues, an organization can maintain its operational integrity and avoid the risks associated with non-compliance, such as fines or legal consequences.
+    </p>
+    <p id="attrition-info" class="detail-info">
+        <strong>Employee Attrition:</strong> The current attrition rate is 8%. This includes resignations, retirements, and layoffs. The HR team is analyzing the reasons for departure and working on retention strategies.<br>
+    The Employee Attrition rate refers to the percentage of employees who leave the company during a specific period. An attrition rate of 8% for the last quarter means that 8% of the workforce either resigned, retired, or were let go. This can impact the company's operations, morale, and financial stability. Monitoring attrition rates helps HR departments identify trends and develop strategies to retain talent, reduce turnover costs, and improve employee satisfaction. <br>
+    <br>Employee attrition is a key metric for HR departments, reflecting the rate at which employees leave the organization. With an attrition rate of 8% last quarter, this indicates a moderate level of turnover. Understanding the underlying causes, whether personal, organizational, or job-related, is crucial to mitigate future losses. Efforts to reduce attrition often focus on improving employee engagement, offering professional development opportunities, and addressing workplace culture. A lower attrition rate can lead to increased stability and reduced recruitment costs. <br>
+
+This information can help guide strategies for retention.<br>
+Employee attrition is a critical factor for businesses to monitor, as it reflects how many employees leave the organization over a specific period. An attrition rate of 8% in the last quarter indicates a moderate level of turnover. This can have both positive and negative impacts on the organization, depending on the reasons behind the departures. If employees are leaving due to dissatisfaction or lack of career growth, this could signal underlying issues that need addressing.
+
+On the other hand, a moderate attrition rate could also reflect natural turnover, especially if employees are leaving for better opportunities or retirement. It’s important for the company to identify patterns and causes of attrition to better manage employee retention strategies. By focusing on enhancing employee satisfaction, providing opportunities for advancement, and creating a positive work environment, organizations can reduce unnecessary turnover and improve overall performance and morale.
+  </p>
+</div>
+  </section>
+  <div class="dashboard-container">
+    <div class="card1">
+      <h3>Employee Statistics</h3>
+      <p>Total Employees: <strong>120</strong></p>
+      <p>Active Projects: <strong>15</strong></p>
+      <p>Departments: <strong>5</strong></p>
+      <a href="#" class="card1-button">View Details</a>
+    </div>
+    <div class="card1">
+      <h3>Upcoming Events</h3>
+      <p><strong>Team Meeting:</strong> Jan 25th, 10 AM</p>
+      <p><strong>Training:</strong> New HR Software, Jan 27th</p>
+      <p><strong>Policy Update Review:</strong> Jan 28th</p>
+      <a href="#" class="card1-button">View Events</a>
+    </div>
+    <div class="card1">
+      <h3>Quick Links</h3>
+      <p><a href="#" class="card1-button">HR Policies</a></p><br>
+      <p><a href="#" class="card1-button">Attendance Portal</a></p><br>
+      <p><a href="#" class="card1-button">Employee Feedback</a></p>
+    </div>
+    <div class="card1">
+      <h3>Announcements</h3>
+      <p>Stay updated with the latest HR notices:</p>
+      <ul>
+        <li>Policy updates effective Feb 1st.</li>
+        <li>Benefits open enrollment ends Jan 31st.</li>
+        <li>New training sessions scheduled for next week.</li>
+      </ul>
+      <a href="#" class="card1-button">View All Announcements</a>
+    </div>
+    <div class="card1">
+      <h3>Tasks</h3>
+      <p>Prioritize your HR tasks:</p>
+      <ul>
+        <li>Complete onboarding for 5 new hires by Jan 25th.</li>
+        <li>Prepare Q1 performance review forms by Jan 30th.</li>
+        <li>Finalize updates to compliance training materials.</li>
+      </ul>
+      <a href="#" class="card1-button">View All Tasks</a>
+    </div>
+    <div class="card1">
+      <h3>Employee Satisfaction</h3>
+      <p>Overview of recent employee feedback:</p>
+      <ul>
+        <li>Average satisfaction score: 4.2/5</li>
+        <li>Key concerns: Work-life balance, career development.</li>
+        <li>Suggestions: Flexible work options, upskilling programs.</li>
+      </ul>
+      <a href="#" class="card1-button">View Survey Results</a>
+    </div>
+    <div class="card1">
+      <h3>Recent Hires</h3>
+      <p>New employees onboarded this month:</p>
+      <ul>
+        <li>John Doe - Marketing, Jan 10th</li>
+        <li>Jane Smith - HR, Jan 15th</li>
+        <li>Mark Wilson - IT, Jan 18th</li>
+      </ul>
+      <a href="#" class="card1-button">View All New Hires</a>
+    </div>
+  </div>
+  <section class="testimonials" id="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-container">
+        <div class="testimonial">
+            <p>"HR Streamline has revolutionized the way we manage our HR tasks. Their platform is intuitive, efficient, and incredibly reliable."</p>
+            <h4>- Jane Doe</h4>
+            <span>CEO, ABC Corporation</span>
+        </div>
+        <div class="testimonial">
+            <p>"Thanks to HR Streamline, our HR operations are now seamless and error-free. Highly recommend their services!"</p>
+            <h4>- John Smith</h4>
+            <span>HR Manager, XYZ Ltd.</span>
+        </div>
+        <div class="testimonial">
+            <p>"The team at HR Streamline is outstanding. Their support and solutions are top-notch!"</p>
+            <h4>- Sarah Lee</h4>
+            <span>Director, LMN Enterprises</span>
+        </div>
+    </div>
+    
+</section>
+<section class="faq" id="faq">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-container">
+      <div class="faq-item">
+          <h3>What is HR Streamline?</h3>
+          <p>
+              HR Streamline is a comprehensive platform designed to simplify and automate human resource operations, helping businesses save time and improve efficiency.
+          </p>
+      </div>
+      <div class="faq-item">
+          <h3>How secure is the platform?</h3>
+          <p>
+              Our platform uses advanced encryption and follows industry-standard security protocols to ensure the safety of your data.
+          </p>
+      </div>
+      <div class="faq-item">
+          <h3>Can I customize the features?</h3>
+          <p>
+              Yes, HR Streamline offers customizable solutions tailored to your business needs. Contact us for a personalized consultation.
+          </p>
+      </div>
+      <div class="faq-item">
+          <h3>Do you offer customer support?</h3>
+          <p>
+              Absolutely! Our dedicated support team is available 24/7 to assist you with any queries or issues.
+          </p>
+      </div>
+  </div>
+</section>
+<section class="portfolio" id="portfolio">
+  <h2>Our Featured Work</h2>
+  <p>Explore our successful projects and see how we have helped businesses achieve their goals.</p>
+  
+  <div class="portfolio-container">
+      <div class="portfolio-item">
+          <img src="project4.jpeg" alt="Project 1">
+          <div class="portfolio-caption">
+              <h4>HR Management Dashboard</h4>
+              <p>Brief description of the project or case study.</p>
+              <a href="hr_management_dashboard.html" class="btn-primary">View Case Study</a>
+          </div>
+      </div>
+
+      <div class="portfolio-item">
+          <img src="project5.webp" alt="Project 2">
+          <div class="portfolio-caption">
+              <h4> Employee Onboarding Portal</h4>
+              <p>Brief description of the project or case study.</p>
+              <a href="employee_onboarding_portal.html" class="btn-primary">View Case Study</a>
+          </div>
+      </div>
+
+      <div class="portfolio-item">
+          <img src="project6.webp" alt="Project 3">
+          <div class="portfolio-caption">
+              <h4>Payroll Automation System</h4>
+              <p>Brief description of the project or case study.</p>
+              <a href="payroll_automation_system.html" class="btn-primary">View Case Study</a>
+          </div>
+      </div>
+  </div>
+</section>
+<section class="blog-news" id="blog-news">
+  <h2>Latest Blog Posts</h2>
+  <div class="blog-container">
+      <!-- Blog Post 1 -->
+      <div class="blog-post">
+          <img src="BLOG1.jpg" alt="Blog Post 1" class="blog-img">
+          <h3><a href="blog1.html">How to Streamline HR Processes with Technology</a></h3>
+          <p class="date">January 15, 2025</p>
+          <p class="excerpt">Discover the latest trends in HR technology and how they can help automate and streamline HR operations...</p>
+          <a href="blog1.html" class="read-more">Read More</a>
+      </div>
+      <!-- Blog Post 2 -->
+      <div class="blog-post">
+          <img src="BLOG2.webp" alt="Blog Post 2" class="blog-img">
+          <h3><a href="blog2.html">The Future of Employee Onboarding</a></h3>
+          <p class="date">January 12, 2025</p>
+          <p class="excerpt">Learn how innovative tools are transforming the employee onboarding experience and boosting employee engagement...</p>
+          <a href="blog2.html" class="read-more">Read More</a>
+      </div>
+      <!-- Blog Post 3 -->
+      <div class="blog-post">
+          <img src="BLOG3.jpg" alt="Blog Post 3" class="blog-img">
+          <h3><a href="blog3.html">How Payroll Automation Improves Accuracy</a></h3>
+          <p class="date">January 10, 2025</p>
+          <p class="excerpt">Explore the advantages of payroll automation and how it can reduce errors and improve efficiency in payroll processing...</p>
+          <a href="blog3.html" class="read-more">Read More</a>
+      </div>
+  </div>
+  
+  <div class="categories">
+      <h3>Categories</h3>
+      <ul>
+          <li><a href="#hr-tech">HR Technology</a></li>
+          <li><a href="#onboarding">Onboarding</a></li>
+          <li><a href="#payroll">Payroll</a></li>
+      </ul>
+  </div>
+</section>
+<section class="cta cta-newsletter">
+  <h2>Sign Up for Our Newsletter</h2>
+  <p>Stay updated with the latest news and trends in HR management.</p>
+  <form id="newsletterForm">
+      <input type="email" placeholder="Enter your email" required>
+      <button type="submit">Subscribe</button>
+  </form>
+</section>
+
+<!-- Call-to-Action: Schedule a Free Consultation -->
+<section class="cta cta-consultation">
+  <h2>Schedule a Free Consultation</h2>
+  <p>Discuss your HR needs with our experts.</p>
+  <a href="consultancy.html" class="cta-button">Schedule Now</a>
+</section>
+
+<!-- Call-to-Action: Get Started Today -->
+<section class="cta cta-get-started">
+  <h2>Get Started Today</h2>
+  <p>Streamline your HR processes with our solutions.</p>
+  <a href="signup.html" class="cta-button">Get Started</a>
+</section>
+<section id="analytics" class="analytics-section">
+  <h2>Our Achievements</h2>
+  <div class="analytics-container">
+      <div class="metric">
+          <div class="metric-icon">🌍</div>
+          <h3>Clients Served</h3>
+          <p><span class="metric-number" id="clientsServed">0</span>+</p>
+      </div>
+      <div class="metric">
+          <div class="metric-icon">✅</div>
+          <h3>Projects Completed</h3>
+          <p><span class="metric-number" id="projectsCompleted">0</span>+</p>
+      </div>
+      <div class="metric">
+          <div class="metric-icon">🏆</div>
+          <h3>Awards Won</h3>
+          <p><span class="metric-number" id="awardsWon">0</span></p>
+      </div>
+  </div>
+</section>
+
+<section id="about-us" class="about-us">
+  <div class="container">
+    <h2>About Us</h2>
+    <p>
+      Welcome to the HR Dashboard, your one-stop solution for managing HR processes seamlessly. 
+      Our platform is designed to streamline recruitment, payroll, and employee management, offering 
+      insights into HR analytics and improving decision-making processes.
+    </p>
+    <p>
+      With automated workflows, real-time updates, and an intuitive interface, we empower organizations to 
+      achieve operational efficiency, reduce manual tasks, and enhance employee satisfaction. Whether it's 
+      recruitment, payroll processing, or generating reports, the HR Dashboard ensures that your HR operations 
+      are always a step ahead.
+    </p>
+    <p>
+      <strong>Our Vision:</strong> To revolutionize HR operations through cutting-edge technology and exceptional service.
+    </p>
+    <img src="HR team.webp" alt="HR Team" style="width: 100%; max-width: 600px; margin-top: 20px;">
+    <p><i class="fas fa-user-circle"></i> Empower HR operations with automation and insights.</p>
+
+  </div>
+</section>
+<div id="chatBubble" class="chat-bubble" onclick="toggleChatWindow()">
+  💬
+</div>
+
+<!-- Chat Window -->
+<div id="chatWindow" class="chat-window">
+  <div class="chat-header">
+      <h4>Chat with Us</h4>
+      <button onclick="toggleChatWindow()">✖</button>
+  </div>
+  <div class="chat-body" id="chatBody">
+      <div class="chat-message bot">
+          Hello! How can I assist you today?
+      </div>
+  </div>
+  <div class="chat-footer">
+      <input type="text" id="chatInput" placeholder="Type your message here..." onkeydown="handleChatInput(event)">
+      <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+<!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <h3>HR Operations Manager Resources</h3><br>
+      <div class="footer-links">
+        <ul>
+          <li><a href="#">|What is an HR Operations Manager?</a></li>
+          <li><a href="#">|Onboarding Process</a></li>
+          <li><a href="#">|Employee Benefits</a></li>
+          <li><a href="#">|Performance Management</a></li>
+          <li><a href="#">|Training & Development</a></li>
+          <li><a href="#">|HR Analytics</a></li>
+        </ul>
+  
+        <ul>
+          <li><a href="#">|HR Solutions</a></li>
+          <li><a href="#">|Employee Attrition Management</a></li>
+          <li><a href="#">|Payroll & Compensation</a></li>
+          <li><a href="#">|Workforce Planning</a></li>
+          <li><a href="#">|Employee Engagement</a></li>
+          <li><a href="#">|HR Technology</a></li>
+        </ul>
+        <ul>
+          <li><a href="#">|Attrition Data</a></li>
+          <li><a href="#">|Compliance & Regulations</a></li>
+          <li><a href="#">|Terms and Conditions</a></li>
+          <li><a href="#">|Contact HR</a></li>
+          <li><a href="#">|Feedback</a></li>
+          <li><a href="#">|Support</a></li>
+        </ul>
+      </div>
+  
+      <p>For more detailed information, visit our <a href="#">HR Operations Knowledge Base</a>.</p>
+      <div class="contact-us">
+        <h4>Contact Us:</h4>
+        <p>If you have any inquiries, reach out to our HR team at <a href="mailto:hr@company.com">hr@company.com</a>.</p>
+      </div>
+  
+      <div class="social-media">
+        <h4>Follow Us:</h4>
+        <a href="#">LinkedIn</a> | <a href="#">Twitter</a> | <a href="#">Facebook</a> | <a href="#">Instagram</a>
+      </div>
+    </div>
+    <p style="text-align:center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+    ">&copy; 2024 HR Management System. All Rights Reserved | <a style="color: #1abc9c;
+    text-decoration: none;"; href="#">Privacy Policy</a> | <a style="color: #1abc9c;
+    text-decoration: none;" href="#">Terms & Conditions</a></p>
+  </footer>
+  <script src="pro.js"></script>
+</body>
+</html>

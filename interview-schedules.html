@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Schedules</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* General Page Styling */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 20px;
+    padding: 0;
+    color: #333;
+}
+
+header h1 {
+    color: #007bff;
+}
+
+/* Form Styling */
+#schedule-form {
+    margin-bottom: 20px;
+}
+
+#schedule-form form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+#schedule-form label {
+    grid-column: span 2;
+}
+
+#schedule-form input, #schedule-form button {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#schedule-form button {
+    grid-column: span 2;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#schedule-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Table Styling */
+#interview-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+#interview-table th, #interview-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+#interview-table th {
+    background-color: #007bff;
+    color: white;
+}
+
+#interview-table td button {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#interview-table td button.edit {
+    background-color: #28a745;
+    color: white;
+}
+
+#interview-table td button.delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+#interview-table td button:hover {
+    opacity: 0.9;
+}
+#back-to-dashboard {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    display:block;
+    width: 100%;
+
+}
+
+#back-to-dashboard:hover {
+    background-color: #0056b3;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Interview Schedules</h1>
+    </header>
+    <main>
+        <p>Here you can schedule interviews and coordinate with the recruitment team.</p>
+
+        <!-- Back to Dashboard Button -->
+        
+
+        <!-- Form to Schedule an Interview -->
+        <section id="schedule-form">
+            <h2>Schedule an Interview</h2>
+            <form id="interview-form">
+                <label for="candidate-name">Candidate Name:</label>
+                <input type="text" id="candidate-name" placeholder="Enter candidate name" required>
+
+                <label for="position">Position:</label>
+                <input type="text" id="position" placeholder="Enter position" required>
+
+                <label for="interviewer">Interviewer:</label>
+                <input type="text" id="interviewer" placeholder="Enter interviewer name" required>
+
+                <label for="date">Date:</label>
+                <input type="date" id="date" required>
+
+                <label for="time">Time:</label>
+                <input type="time" id="time" required>
+
+                <button type="submit">Schedule</button>
+            </form>
+        </section>
+
+        <!-- Search and Filter -->
+        <section id="search-section">
+            <h2>Search Interviews</h2>
+            <input type="text" id="search-bar" placeholder="Search by candidate or position">
+        </section>
+
+        <!-- Table of Scheduled Interviews -->
+        <section id="interview-table-section">
+            <h2>Scheduled Interviews</h2>
+            <table id="interview-table">
+                <thead>
+                    <tr>
+                        <th>Candidate</th>
+                        <th>Position</th>
+                        <th>Interviewer</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="interview-table-body">
+                    <!-- Dynamic rows will be populated here -->
+                </tbody>
+            </table>
+        </section>
+        <button id="back-to-dashboard" onclick="goBack()">Back to Dashboard</button>
+    </main>
+    <script>
+      const form = document.getElementById("interview-form");
+const searchBar = document.getElementById("search-bar");
+const interviewTableBody = document.getElementById("interview-table-body");
+
+let interviews = [];
+
+// Add a new interview
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const newInterview = {
+        candidate: document.getElementById("candidate-name").value,
+        position: document.getElementById("position").value,
+        interviewer: document.getElementById("interviewer").value,
+        date: document.getElementById("date").value,
+        time: document.getElementById("time").value,
+    };
+
+    interviews.push(newInterview);
+    form.reset();
+    displayInterviews();
+});
+
+// Display all interviews
+function displayInterviews() {
+    interviewTableBody.innerHTML = "";
+
+    interviews.forEach((interview, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${interview.candidate}</td>
+            <td>${interview.position}</td>
+            <td>${interview.interviewer}</td>
+            <td>${interview.date}</td>
+            <td>${interview.time}</td>
+            <td>
+                <button class="edit" onclick="editInterview(${index})">Edit</button>
+                <button class="delete" onclick="deleteInterview(${index})">Delete</button>
+            </td>
+        `;
+
+        interviewTableBody.appendChild(row);
+    });
+}
+
+// Edit an interview
+function editInterview(index) {
+    const interview = interviews[index];
+
+    document.getElementById("candidate-name").value = interview.candidate;
+    document.getElementById("position").value = interview.position;
+    document.getElementById("interviewer").value = interview.interviewer;
+    document.getElementById("date").value = interview.date;
+    document.getElementById("time").value = interview.time;
+
+    // Remove the interview from the list
+    interviews.splice(index, 1);
+    displayInterviews();
+}
+
+// Delete an interview
+function deleteInterview(index) {
+    interviews.splice(index, 1);
+    displayInterviews();
+}
+
+// Search interviews
+searchBar.addEventListener("input", () => {
+    const term = searchBar.value.toLowerCase();
+    interviewTableBody.innerHTML = "";
+
+    interviews
+        .filter(interview =>
+            interview.candidate.toLowerCase().includes(term) ||
+            interview.position.toLowerCase().includes(term)
+        )
+        .forEach((interview, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+                <td>${interview.candidate}</td>
+                <td>${interview.position}</td>
+                <td>${interview.interviewer}</td>
+                <td>${interview.date}</td>
+                <td>${interview.time}</td>
+                <td>
+                    <button class="edit" onclick="editInterview(${index})">Edit</button>
+                    <button class="delete" onclick="deleteInterview(${index})">Delete</button>
+                </td>
+            `;
+
+            interviewTableBody.appendChild(row);
+        });
+});
+function goBack() {
+    window.location.href = 'recuritment.html';
+}
+    </script>
+</body>
+</html>

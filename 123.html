@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      /* Portfolio Section Styling */
+.portfolio {
+    background-color: #f8f9fa; /* Light gray background */
+    padding: 50px 50px;
+    text-align: center;
+    color: #343a40; /* Dark gray text */
+}
+
+.portfolio h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #007bff; /* Professional blue */
+}
+
+.portfolio p {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #6c757d; /* Muted gray */
+}
+
+/* Portfolio Container (Grid layout) */
+.portfolio-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsive grid */
+    gap: 100px;
+    justify-items: center;
+}
+
+/* Portfolio Item */
+.portfolio-item {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover img {
+    transform: scale(1.1); /* Zoom effect on hover */
+}
+
+/* Portfolio Caption */
+.portfolio-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.portfolio-item:hover .portfolio-caption {
+    transform: translateY(0); /* Slide up effect */
+}
+
+.portfolio-caption h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.portfolio-caption p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+@media (max-width: 768px) {
+    .portfolio-container {
+        grid-template-columns: 1fr; /* Stack portfolio items vertically on small screens */
+    }
+
+    .portfolio-caption h4 {
+        font-size: 1.2rem;
+    }
+
+    .portfolio-caption p {
+        font-size: 0.9rem;
+    }
+
+    .btn-primary {
+        padding: 8px 16px;
+    }
+}
+</style>
+  </head>
+  <body>
+<section class="portfolio" id="portfolio">
+    <h2>Our Featured Work</h2>
+    <p>Explore our successful projects and see how we have helped businesses achieve their goals.</p>
+    
+    <div class="portfolio-container">
+        <div class="portfolio-item">
+            <img src="project4.jpeg" alt="Project 1">
+            <div class="portfolio-caption">
+                <h4>Project Title 1</h4>
+                <p>Brief description of the project or case study.</p>
+                <a href="project1-details.html" class="btn-primary">View Case Study</a>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <img src="project5.webp" alt="Project 2">
+            <div class="portfolio-caption">
+                <h4>Project Title 2</h4>
+                <p>Brief description of the project or case study.</p>
+                <a href="project2-details.html" class="btn-primary">View Case Study</a>
+            </div>
+        </div>
+
+        <div class="portfolio-item">
+            <img src="project6.webp" alt="Project 3">
+            <div class="portfolio-caption">
+                <h4>Project Title 3</h4>
+                <p>Brief description of the project or case study.</p>
+                <a href="project3-details.html" class="btn-primary">View Case Study</a>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>

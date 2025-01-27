@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HR Streamline</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="favicon.ico"> 
+    <style>
+    /* Basic styles for the contact page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7fa; /* Light gray background */
+    color:black /* Dark text for readability */
+}
+
+/* Header and Navigation */
+header {
+    background-color: black; /* Dark blue-gray for the header */
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+}
+/* Contact Header */
+.contact-header {
+    background-color: #2980b9; /* Professional blue background */
+    color: white;
+    padding: 50px 20px;
+    text-align: center;
+}
+
+.contact-header h1 {
+    font-size: 2.5rem;
+}
+
+.contact-header p {
+    font-size: 1.2rem;
+}
+
+/* Contact Form Section */
+.contact-form-section {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+}
+
+.contact-info {
+    width: 30%;
+    padding: 20px;
+    background-color: #fff; /* White background for the contact info */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h2 {
+    font-size: 1.6rem;
+    color: #34495e; /* Subtle dark gray text */
+}
+
+.contact-info p {
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Contact Form */
+.contact-form {
+    width: 60%;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form h2 {
+    font-size: 1.8rem;
+    color: #34495e;
+    margin-bottom: 20px;
+}
+
+.contact-form .form-group {
+    margin-bottom: 15px;
+}
+
+.contact-form .form-group label {
+    font-size: 16px;
+    color: #2c3e50; /* Dark text for labels */
+}
+
+.contact-form .form-group input, .contact-form .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #ecf0f1; /* Light gray background for input fields */
+}
+
+.contact-form .form-group input:focus, .contact-form .form-group textarea:focus {
+    border-color: #3498db; /* Blue focus border on inputs */
+    outline: none;
+}
+
+.contact-form button {
+    background-color: #3498db; /* Blue button */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.contact-form button:hover {
+    background-color: #2980b9; /* Darker blue on hover */
+}
+
+
+/* Footer */
+footer {
+    background-color: #2c3e50; /* Dark blue-gray for footer */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1rem;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 768px) {
+    .contact-form-section {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-info, .contact-form {
+        width: 90%;
+    }
+
+    .contact-header h1 {
+        font-size: 2rem;
+    }
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1c1c1c; /* Black */
+    color: #ffd700; /* Gold for text or accents */
+  }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color:black; /* Dark blue-gray */
+  color: rgb(8, 7, 7);
+  height: 60px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+nav ul {
+  display:flex;
+  justify-content:center;
+  background-color:black;
+  padding:10px;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 23px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffd700; /* Gold for text or accents */
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+nav ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+  color:#f39c12;
+}
+.hidden {
+  display: none;
+}
+</style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="nav-links">
+              <li><a href="pro.html">Dashboard</a></li>
+              <li><a href="recuritment.html">Recruitment</a></li>
+              <li><a href="payroll.html">Payroll</a></li>
+              <li><a href="reports.html">Reports</a></li>
+              <li><a href="admin-panel.html">Admin</a></li>
+              <li><a href="Contact.html">Contact</a></li>
+              <li><a href="feedback.html">Feedback</a></li>
+              <li><a href="login.html">Login</a></li>
+            </ul>
+          </nav>
+    </header>
+
+    <section class="contact-header">
+        <h1>Contact Us</h1>
+        <p>We'd love to hear from you. Please reach out with any questions or inquiries.</p>
+    </section>
+
+    <section class="contact-form-section">
+        <div class="contact-info">
+            <h2>Our Office</h2>
+            <p>123 HR Street, Suite 456<br>City, Country 789</p>
+            <p>Email: contact@hrstreamline.com</p>
+            <p>Phone: (123) 456-7890</p>
+        </div>
+
+        <form action="submit_form.php" method="POST" class="contact-form">
+            <h2>Get In Touch</h2>
+            <div class="form-group">
+                <label for="name">Your Name</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your name">
+            </div>
+            <div class="form-group">
+                <label for="email">Your Email</label>
+                <input type="email" id="email" name="email" required placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+                <label for="message">Your Message</label>
+                <textarea id="message" name="message" rows="5" required placeholder="Write your message here"></textarea>
+            </div>
+            <button type="submit" class="btn">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 HR Streamline. All rights reserved.</p>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.querySelector('.contact-form');
+    const nameInput = document.getElementById('name');
+    const emailInput = document.getElementById('email');
+    const messageInput = document.getElementById('message');
+    const submitButton = document.querySelector('.btn');
+
+    // Form validation
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+
+        // Clear previous messages
+        clearFeedback();
+
+        // Check if the form is valid
+        if (nameInput.value.trim() === '' || emailInput.value.trim() === '' || messageInput.value.trim() === '') {
+            showFeedback('Please fill in all fields.', 'error');
+            return;
+        }
+
+        // Simulate sending data (using AJAX)
+        sendFormData();
+    });
+
+    // Simulated AJAX form submission
+    function sendFormData() {
+        // Collecting form data
+        const formData = new FormData(contactForm);
+
+        // Simulating AJAX submission (you can replace this with real AJAX code)
+        setTimeout(() => {
+            // Mock success response
+            const isSuccess = true; // Change this to simulate success or error
+
+            if (isSuccess) {
+                showFeedback('Thank you! Your message has been sent successfully.', 'success');
+                contactForm.reset(); // Reset form after success
+            } else {
+                showFeedback('Oops! Something went wrong. Please try again later.', 'error');
+            }
+        }, 1500); // Simulate 1.5 seconds delay for AJAX request
+    }
+
+    // Show success or error feedback
+    function showFeedback(message, type) {
+        const feedbackDiv = document.createElement('div');
+        feedbackDiv.classList.add('feedback', type);
+        feedbackDiv.textContent = message;
+
+        // Insert feedback message above the form
+        contactForm.insertBefore(feedbackDiv, contactForm.firstChild);
+
+        // Auto-hide feedback after 4 seconds
+        setTimeout(() => {
+            feedbackDiv.remove();
+        }, 4000);
+    }
+
+    // Clear feedback messages
+    function clearFeedback() {
+        const existingFeedback = document.querySelector('.feedback');
+        if (existingFeedback) {
+            existingFeedback.remove();
+        }
+    }
+});
+
+    </script>
+</body>
+</html>

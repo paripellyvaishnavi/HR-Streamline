@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deductions</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Search Bar */
+#search-bar {
+    width: 50%;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td {
+    color: #555;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Back to Dashboard Button */
+#back-to-dashboard {
+    display: block;
+    margin: 20px auto;
+    background-color: #28a745;
+}
+
+#back-to-dashboard:hover {
+    background-color: #218838;
+}
+
+/* Edit Form */
+#edit-form-section {
+    margin-top: 30px;
+    text-align: left;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#edit-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+#edit-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#add-record-section form {
+    margin-top: 30px;
+    display: inline-block;
+    text-align: left;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#add-record-section form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+#add-record-section form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Deductions</h1>
+    </header>
+
+    <main>
+        <p>Apply and track deductions such as taxes and benefits.</p>
+
+        <!-- Search Bar -->
+        <section id="search-section">
+            <input
+                type="text"
+                id="search-bar"
+                placeholder="Search by employee name or deduction type"
+                onkeyup="filterTable()"
+            />
+        </section>
+        <section id="add-record-section">
+            <h2>Add New Deduction Record</h2>
+            <form id="add-form" onsubmit="addRecord(event)">
+                <label for="new-employee-name">Employee Name:</label>
+                <input type="text" id="new-employee-name" name="employee-name" required />
+
+                <label for="new-deduction-type">Deduction Type:</label>
+                <input type="text" id="new-deduction-type" name="deduction-type" required />
+
+                <label for="new-deduction-amount">Amount:</label>
+                <input type="number" id="new-deduction-amount" name="deduction-amount" required />
+
+                <button type="submit">Add Record</button>
+            </form>
+        </section>
+
+
+        <!-- Table for Deductions -->
+        <section id="deductions-section">
+            <h2>Deduction Records</h2>
+            <table id="deductions-table">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Deduction Type</th>
+                        <th>Amount</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Tax</td>
+                        <td>$500</td>
+                        <td><button onclick="editDeduction('John Doe', 'Tax', '$500')">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Health Benefits</td>
+                        <td>$200</td>
+                        <td><button onclick="editDeduction('Jane Smith', 'Health Benefits', '$200')">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Edit Deduction Form -->
+        <section id="edit-form-section" style="display: none;">
+            <h2>Edit Deduction</h2>
+            <form id="edit-form" onsubmit="updateDeduction(event)">
+                <label for="employee-name">Employee Name:</label>
+                <input type="text" id="employee-name" name="employee-name" readonly />
+
+                <label for="deduction-type">Deduction Type:</label>
+                <input type="text" id="deduction-type" name="deduction-type" readonly />
+
+                <label for="deduction-amount">New Amount:</label>
+                <input type="text" id="deduction-amount" name="deduction-amount" required />
+
+                <button type="submit">Update Deduction</button>
+                <button type="button" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </section>
+
+        <!-- Back to Dashboard Button -->
+        <button id="back-to-dashboard" onclick="goBack()">Back to Dashboard</button>
+    </main>
+
+    <script>
+      // Navigate back to the dashboard
+function goBack() {
+    window.location.href = "payroll.html"; // Replace with the dashboard page URL
+}
+
+// Filter the table based on search input
+function filterTable() {
+    const searchInput = document.getElementById("search-bar").value.toLowerCase();
+    const rows = document.querySelectorAll("#deductions-table tbody tr");
+
+    rows.forEach(row => {
+        const name = row.cells[0].textContent.toLowerCase();
+        const deductionType = row.cells[1].textContent.toLowerCase();
+
+        if (name.includes(searchInput) || deductionType.includes(searchInput)) {
+            row.style.display = ""; // Show row
+        } else {
+            row.style.display = "none"; // Hide row
+        }
+    });
+}
+
+// Show the edit form with pre-filled data
+function editDeduction(name, type, amount) {
+    document.getElementById("employee-name").value = name;
+    document.getElementById("deduction-type").value = type;
+    document.getElementById("deduction-amount").value = amount;
+
+    document.getElementById("edit-form-section").style.display = "block";
+}
+
+// Cancel editing and hide the form
+function cancelEdit() {
+    document.getElementById("edit-form-section").style.display = "none";
+}
+
+// Update deduction record
+function updateDeduction(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("employee-name").value;
+    const newAmount = document.getElementById("deduction-amount").value;
+
+    // Find the corresponding row in the table and update the deduction
+    const rows = document.querySelectorAll("#deductions-table tbody tr");
+    rows.forEach(row => {
+        if (row.cells[0].textContent === name) {
+            row.cells[2].textContent = newAmount;
+        }
+    });
+
+    // Hide the form after updating
+    cancelEdit();
+}
+function addRecord(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("new-employee-name").value;
+    const type = document.getElementById("new-deduction-type").value;
+    const amount = document.getElementById("new-deduction-amount").value;
+
+    // Create a new row
+    const table = document.getElementById("deductions-table").querySelector("tbody");
+    const newRow = document.createElement("tr");
+
+    newRow.innerHTML = `
+        <td>${name}</td>
+        <td>${type}</td>
+        <td>$${amount}</td>
+        <td><button onclick="editDeduction('${name}', '${type}', '$${amount}')">Edit</button></td>
+    `;
+
+    // Append the new row to the table
+    table.appendChild(newRow);
+
+    // Clear the form inputs
+    document.getElementById("add-form").reset();
+}
+
+
+    </script>
+</body>
+</html>

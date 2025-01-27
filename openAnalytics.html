@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payroll Analytics</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #4caf50;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+h1, h2 {
+    margin: 10px 0;
+}
+
+main {
+    padding: 20px;
+}
+
+/* Chart Section */
+#chart-section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+canvas {
+    width:auto;
+    height: auto;
+}
+
+/* Insights Section */
+#insights-section {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.insight {
+    margin: 10px 0;
+    font-size: 1.1em;
+}
+
+/* Back Button */
+#backButton {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#backButton:hover {
+    background-color: #45a049;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Payroll Analytics</h1>
+    </header>
+    <main>
+        <p>Analyze payroll trends and insights for better financial decisions.</p>
+
+        <!-- Chart Container -->
+        <section id="chart-section">
+            <h2>Department-wise Payroll Analysis</h2>
+            <canvas id="payrollChart"></canvas>
+        </section>
+
+        <!-- Insights Section -->
+        <section id="insights-section">
+            <h2>Key Payroll Insights</h2>
+            <div class="insight">
+                <strong>Total Monthly Payroll:</strong> <span id="totalPayroll">$0</span>
+            </div>
+            <div class="insight">
+                <strong>Average Salary:</strong> <span id="averageSalary">$0</span>
+            </div>
+            <div class="insight">
+                <strong>Highest Deduction:</strong> <span id="highestDeduction">$0</span>
+            </div>
+        </section>
+
+        <!-- Navigation Button -->
+        <button id="backButton">Back to Dashboard</button>
+    </main>
+
+    <script>
+      // Example payroll data
+const payrollData = {
+    departments: ['HR', 'Finance', 'IT', 'Sales', 'Operations'],
+    salaries: [5000, 7000, 8000, 6000, 6500],
+    deductions: [500, 700, 600, 400, 550]
+};
+
+// Calculate insights
+function calculateInsights(data) {
+    const totalPayroll = data.salaries.reduce((sum, salary) => sum + salary, 0);
+    const averageSalary = totalPayroll / data.salaries.length;
+    const highestDeduction = Math.max(...data.deductions);
+
+    // Update DOM
+    document.getElementById('totalPayroll').textContent = `$${totalPayroll}`;
+    document.getElementById('averageSalary').textContent = `$${averageSalary.toFixed(2)}`;
+    document.getElementById('highestDeduction').textContent = `$${highestDeduction}`;
+}
+
+// Render chart using Chart.js
+function renderChart(data) {
+    const ctx = document.getElementById('payrollChart').getContext('2d');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.departments,
+            datasets: [
+                {
+                    label: 'Salaries',
+                    data: data.salaries,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+                {
+                    label: 'Deductions',
+                    data: data.deductions,
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 1
+                }
+            ]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: { callbacks: { label: context => `$${context.raw}` } }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'Amount ($)' }
+                },
+                x: {
+                    title: { display: true, text: 'Departments' }
+                }
+            }
+        }
+    });
+}
+
+// Back to Dashboard Navigation
+document.getElementById('backButton').addEventListener('click', () => {
+    window.location.href = 'payroll.html';
+});
+
+// Initialize page
+calculateInsights(payrollData);
+renderChart(payrollData);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Postings</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    width: 100%;
+    padding: 15px 0;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+/* Main Section */
+main {
+    max-width: 900px;
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Titles */
+main h2 {
+    color: #007bff;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+/* Forms and Inputs */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+form label {
+    font-weight: bold;
+    color: #333;
+}
+
+form input, form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+form textarea {
+    resize: vertical;
+}
+
+/* Buttons */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#add-job-btn {
+    align-self: flex-start;
+}
+
+button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Search Bar */
+#search-bar {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+table th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Back to Dashboard Button */
+button:last-of-type {
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Job Postings</h1>
+    </header>
+
+    <main>
+        <p>Here you can create and manage job postings to attract top talent.</p>
+
+        <!-- Form to add a new job posting -->
+        <section id="job-form">
+            <h2>Add a New Job Posting</h2>
+            <form id="add-job-form">
+                <label for="job-title">Job Title:</label>
+                <input type="text" id="job-title" placeholder="Enter job title" required>
+
+                <label for="job-description">Description:</label>
+                <textarea id="job-description" placeholder="Enter job description" required></textarea>
+
+                <label for="job-department">Department:</label>
+                <input type="text" id="job-department" placeholder="Enter department" required>
+
+                <label for="job-location">Location:</label>
+                <input type="text" id="job-location" placeholder="Enter location" required>
+
+                <button type="button" id="add-job-btn">Add Job</button>
+            </form>
+        </section>
+
+        <!-- Search Bar -->
+        <section id="search-section">
+            <h2>Search Job Postings</h2>
+            <input type="text" id="search-bar" placeholder="Search by job title or department">
+        </section>
+
+        <!-- Job Listings Table -->
+        <section id="job-list">
+            <h2>Posted Jobs</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Department</th>
+                        <th>Location</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="job-table-body">
+                    <!-- Job postings will appear here -->
+                </tbody>
+            </table>
+        </section>
+
+        <button onclick="goBack()">Back to Dashboard</button>
+    </main>
+
+    <script>
+        const jobTableBody = document.getElementById("job-table-body");
+        const addJobBtn = document.getElementById("add-job-btn");
+        const searchBar = document.getElementById("search-bar");
+
+        // Store jobs in an array
+        let jobs = [];
+
+        // Add a new job posting
+        addJobBtn.addEventListener("click", () => {
+            const title = document.getElementById("job-title").value;
+            const description = document.getElementById("job-description").value;
+            const department = document.getElementById("job-department").value;
+            const location = document.getElementById("job-location").value;
+
+            if (title && description && department && location) {
+                jobs.push({ title, description, department, location });
+                displayJobs();
+                document.getElementById("add-job-form").reset(); // Clear form
+            } else {
+                alert("Please fill in all fields!");
+            }
+        });
+
+        // Display jobs in the table
+        function displayJobs(filter = "") {
+            jobTableBody.innerHTML = "";
+
+            jobs
+                .filter(job =>
+                    job.title.toLowerCase().includes(filter.toLowerCase()) ||
+                    job.department.toLowerCase().includes(filter.toLowerCase())
+                )
+                .forEach((job, index) => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${job.title}</td>
+                        <td>${job.description}</td>
+                        <td>${job.department}</td>
+                        <td>${job.location}</td>
+                        <td>
+                            <button onclick="editJob(${index})">Edit</button>
+                            <button onclick="deleteJob(${index})">Delete</button>
+                        </td>
+                    `;
+                    jobTableBody.appendChild(row);
+                });
+        }
+
+        // Edit a job posting
+        function editJob(index) {
+            const job = jobs[index];
+            document.getElementById("job-title").value = job.title;
+            document.getElementById("job-description").value = job.description;
+            document.getElementById("job-department").value = job.department;
+            document.getElementById("job-location").value = job.location;
+
+            jobs.splice(index, 1); // Remove the job from the array
+            displayJobs();
+        }
+
+        // Delete a job posting
+        function deleteJob(index) {
+            jobs.splice(index, 1); // Remove the job from the array
+            displayJobs();
+        }
+
+        // Filter jobs based on the search input
+        searchBar.addEventListener("input", (event) => {
+            displayJobs(event.target.value);
+        });
+
+        // Back to Dashboard function
+        function goBack() {
+            window.location.href = "recuritment.html";
+        }
+    </script>
+</body>
+</html>
+

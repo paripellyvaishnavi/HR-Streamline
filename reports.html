@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reports</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* Reports Page Styles */
+
+/* Body */
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header */
+header {
+  background-color: #d7d9e4;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  font-size: 2.5em;
+}
+
+/* Section */
+section {
+  margin: 20px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+section p {
+  font-size: 1.2em;
+  color: #444;
+  line-height: 1.6;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  background-color:black; /* Dark blue-gray */
+  color: rgb(8, 7, 7);
+  height: 60px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Navigation Bar */
+nav ul {
+  display: flex;
+  justify-content: center;
+  background-color:black;
+  padding: 10px;
+}
+
+nav ul li {
+  list-style: none;
+  margin: 0 15px;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1c1c1c; /* Black */
+    color: #ffd700; /* Gold for text or accents */
+  }
+nav ul li a {
+  text-decoration: none;
+  color: #ffd700;
+  font-weight: bold;
+}
+
+nav ul li a:hover {
+  text-decoration: none;
+}
+.hidden {
+  display: none;
+}
+header {
+  background-color: #009688;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5em;
+}
+
+/* Section */
+section {
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  line-height: 1.6;
+}
+
+section p {
+  font-size: 1.2em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Features Section */
+.reports-features {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.feature-card {
+  background-color: #f9f9f9;
+  border: 2px solid #009688;
+  border-radius: 8px;
+  padding: 15px;
+  width: 30%;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.feature-card h3 {
+  color: #009688;
+  margin-bottom: 10px;
+}
+
+.feature-card p {
+  color: #555;
+  font-size: 1em;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  margin-top: 20px;
+}
+.feature-card {
+    background-color: #f9f9f9;
+    border: 2px solid #009688;
+    border-radius: 8px;
+    padding: 15px;
+    width: 30%;
+    text-align: center;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .feature-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-card button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #009688;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .feature-card button:hover {
+    background-color: #00796b;
+  }
+  
+  /* Dynamic Details Section */
+  #details-section {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #e0f7fa;
+  border: 2px solid #009688;
+  border-radius: 8px;
+  text-align: center;
+  transform: translateY(20px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+  }
+  
+  #details-section h2 {
+    color: #009688;
+    margin-bottom: 10px;
+  }
+  
+  #details-section button {
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: #009688;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  #details-section button:hover {
+    background-color: #00796b;
+  }
+  .chart-container {
+  margin-top: 20px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+nav{
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  color: white;
+  height: 60px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Nav Links */
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 23px;
+}
+
+.nav-links li {
+  display: inline;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #ffd700; /* Gold for text or accents */
+  font-size: 1.1rem;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f39c12; /* Gold hover color */
+}
+
+/* Burger Menu for Mobile */
+.burger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.burger .line {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: #34495e; /* Slightly lighter background */
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .burger {
+    display: flex;
+  }
+}
+.report-notifications {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+.report-notifications h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.report-notifications ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.report-notifications li {
+    background-color: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-notifications button.mark-as-read {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.report-notifications button.mark-as-read:hover {
+    background-color: #45a049;
+}
+/* Filter Form Container */
+#filterForm {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+}
+
+/* Labels */
+#filterForm label {
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 16px;
+}
+
+/* Select Dropdown */
+#filterForm select {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Date Inputs */
+#filterForm input[type="date"] {
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: #fff;
+    width: calc(50% - 10px);
+    cursor: pointer;
+}
+
+/* Filter Button */
+#filterForm button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#filterForm button:hover {
+    background-color: #45a049;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #filterForm {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #filterForm input[type="date"],
+    #filterForm select,
+    #filterForm button {
+        width: 100%;
+    }
+}
+/* Export Buttons Container */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin: 10px 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* PDF Button Style */
+button[onclick*="pdf"] {
+    background-color: #e74c3c; /* Red for PDF */
+}
+
+button[onclick*="pdf"]:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
+}
+
+/* Excel Button Style */
+button[onclick*="excel"] {
+    background-color: #27ae60; /* Green for Excel */
+}
+
+button[onclick*="excel"]:hover {
+    background-color: #1e8449;
+    transform: scale(1.05);
+}
+
+/* Focus Styles */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    button {
+        width: 100%; /* Full-width buttons for smaller screens */
+    }
+}
+/* Report Summary Section */
+.report-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+/* Summary Cards */
+.summary-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 30%; /* Adjust the width for 3 columns */
+    min-width: 250px;
+    transition: transform 0.3s ease;
+}
+
+/* Card Hover Effect */
+.summary-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Card Title */
+.summary-card h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Card Value */
+.summary-card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #27ae60; /* Green for emphasis */
+    margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .report-summary {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .summary-card {
+        width: 80%; /* Full width for smaller screens */
+        margin-bottom: 20px;
+    }
+}
+
+.analytics-summary {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.analytics-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 45%;
+}
+
+.analytics-card h3 {
+    font-size: 18px;
+    color: #333;
+}
+
+.analytics-card p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #2980b9;
+}
+
+
+  </style>
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul class="nav-links">
+      <li><a href="pro.html">Dashboard</a></li>
+      <li><a href="recuritment.html">Recruitment</a></li>
+      <li><a href="payroll.html">Payroll</a></li>
+      <li><a href="reports.html">Reports</a></li>
+      <li><a href="admin-panel.html">Admin</a></li>
+      <li><a href="Contact.html">Contact</a></li>
+      <li><a href="feedback.html">Feedback</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>Welcome to the Reports Section</h1>
+  </header>
+
+  <!-- Reports Content -->
+  <section>
+    <p>
+      Here, you can generate and review HR analytics reports. Gain valuable insights to improve decision-making and operational efficiency.
+    </p>
+
+    <!-- Features Section -->
+    <div class="reports-features">
+      <div class="feature-card" onclick="showDetails('performance')">
+        <h3>Employee Performance</h3>
+        <p>Generate reports on employee performance and progress.</p>
+        <button>View More</button>
+      </div>
+      <div class="feature-card" onclick="showDetails('analytics')">
+        <h3>Recruitment Analytics</h3>
+        <p>Review recruitment trends and hiring success metrics.</p>
+        <button>View More</button>
+      </div>
+      <div class="feature-card" onclick="showDetails('payroll')">
+        <h3>Payroll Summary</h3>
+        <p>Analyze payroll expenditures and budget alignment.</p>
+        <button>View More</button>
+      </div>
+    </div>
+
+    <!-- Dynamic Details Section -->
+    <div id="chart-container" class="chart-container"></div>
+      <h2 id="details-title"></h2>
+      <p id="details-content"></p>
+      <button onclick="hideDetails()">Close</button>
+    </div>
+  </section>
+  <form id="filterForm">
+    <label for="department">Filter by Department:</label>
+    <select id="department">
+        <option value="all">All Departments</option>
+        <option value="hr">HR</option>
+        <option value="sales">Sales</option>
+        <option value="it">IT</option>
+    </select>
+
+    <label for="dateRange">Date Range:</label>
+    <input type="date" id="startDate"> to <input type="date" id="endDate">
+
+    <button type="button" onclick="applyFilters()">Apply Filters</button>
+</form>
+<button onclick="exportReport('pdf')">Download as PDF</button>
+<button onclick="exportReport('excel')">Download as Excel</button>
+<section class="report-summary">
+    <div class="summary-card">
+        <h3>Total Employees</h3>
+        <p>150</p>
+    </div>
+    <div class="summary-card">
+        <h3>Average Performance</h3>
+        <p>85%</p>
+    </div>
+    <div class="summary-card">
+        <h3>Total Hours Worked</h3>
+        <p>12,500</p>
+    </div>
+</section>
+
+<section class="report-notifications">
+    <h3>Recent Updates</h3>
+    <ul>
+        <li>January payroll data added on Jan 15, 2025.</li>
+        <li>New performance metrics uploaded on Jan 18, 2025.</li>
+    </ul>
+</section>
+<section class="report-notifications">
+    <h2>Recent Notifications</h2>
+    <ul id="notificationsList">
+        <li>
+            <p>January payroll data added on Jan 15, 2025.</p>
+            <button class="mark-as-read" onclick="markAsRead(this)">Mark as Read</button>
+        </li>
+        <li>
+            <p>New performance metrics uploaded on Jan 18, 2025.</p>
+            <button class="mark-as-read" onclick="markAsRead(this)">Mark as Read</button>
+        </li>
+        <li>
+            <p>Updated compliance report available as of Jan 20, 2025.</p>
+            <button class="mark-as-read" onclick="markAsRead(this)">Mark as Read</button>
+        </li>
+    </ul>
+</section>
+<section class="analytics-summary">
+    <h2>Popular Reports & Insights</h2>
+    <div class="analytics-card">
+        <h3>Most Accessed Report</h3>
+        <p>Employee Performance</p>
+    </div>
+    <div class="analytics-card">
+        <h3>Top Time Range</h3>
+        <p>Last 7 Days</p>
+    </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2024 HR Management System. All Rights Reserved.</p>
+  </footer>
+  <script>
+    // Handles the details section display
+    function showDetails(feature) {
+  const detailsTitle = document.getElementById('details-title');
+  const detailsContent = document.getElementById('details-content');
+  const detailsSection = document.getElementById('details-section');
+
+  // Update content based on the clicked feature
+  if (feature === 'performance') {
+    detailsTitle.textContent = 'Employee Performance';
+    detailsContent.textContent = 'Detailed performance insights with data charts showing employee KPIs and team evaluations.';
+    displayChart('performance');
+  } else if (feature === 'analytics') {
+    detailsTitle.textContent = 'Recruitment Analytics';
+    detailsContent.textContent = 'Visualize hiring trends and candidate conversion rates using dynamic charts.';
+    displayChart('analytics');
+  } else if (feature === 'payroll') {
+    detailsTitle.textContent = 'Payroll Summary';
+    detailsContent.textContent = 'Analyze payroll breakdowns with charts showing budget alignment and expenditures.';
+    displayChart('payroll');
+  }
+
+  // Add the visible class to show the details section
+  detailsSection.classList.add('visible');
+}
+
+// Hides the details section
+function hideDetails() {
+  const detailsSection = document.getElementById('details-section');
+  detailsSection.style.display = 'none'; // Hide details section
+}
+function displayChart(feature) {
+  const chartContainer = document.getElementById('chart-container');
+  chartContainer.innerHTML = '<canvas id="report-chart"></canvas>'; // Reset chart container
+
+  const ctx = document.getElementById('report-chart').getContext('2d');
+  let chartData;
+
+  // Set chart data based on the feature
+  if (feature === 'performance') {
+    chartData = {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+      datasets: [
+        {
+          label: 'Employee Performance Score',
+          data: [75, 80, 85, 90],
+          backgroundColor: 'rgba(0, 150, 136, 0.2)',
+          borderColor: '#009688',
+          borderWidth: 2,
+        },
+      ],
+    };
+  } else if (feature === 'analytics') {
+    chartData = {
+      labels: ['Applications', 'Interviews', 'Offers', 'Hires'],
+      datasets: [
+        {
+          label: 'Recruitment Funnel',
+          data: [120, 80, 40, 20],
+          backgroundColor: 'rgba(33, 150, 243, 0.2)',
+          borderColor: '#2196f3',
+          borderWidth: 2,
+        },
+      ],
+    };
+  } else if (feature === 'payroll') {
+    chartData = {
+      labels: ['Salaries', 'Benefits', 'Bonuses', 'Taxes'],
+      datasets: [
+        {
+          label: 'Payroll Breakdown (in %)',
+          data: [50, 20, 15, 15],
+          backgroundColor: ['#009688', '#4caf50', '#ffc107', '#f44336'],
+        },
+      ],
+    };
+  }
+
+  // Initialize Chart.js
+  new Chart(ctx, {
+    type: feature === 'payroll' ? 'pie' : 'bar', // Pie chart for payroll, bar for others
+    data: chartData,
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+      },
+    },
+  });
+}
+const burger = document.querySelector('.burger');
+const navLinks = document.querySelector('.nav-links');
+
+burger.addEventListener('click', () => {
+  navLinks.classList.toggle('active');
+});
+  
+    function exportReport(format) {
+    alert(`Exporting report as ${format.toUpperCase()}`);
+    // Add integration for export functionality (e.g., backend API calls)
+}
+function markAsRead(button) {
+    // Find the parent <li> element and remove it
+    const notificationItem = button.parentElement;
+
+    // Add a "read" class for visual feedback or remove the item
+    notificationItem.style.textDecoration = "line-through"; // Optional visual feedback
+    notificationItem.style.opacity = 0.5; // Optional faded effect
+    button.remove(); // Remove the "Mark as Read" button
+}
+function applyFilters() {
+            alert("Filters applied!");
+        }
+        function exportReport(format) {
+            alert("Exporting as " + format.toUpperCase());
+        }
+  
+  </script>
+</body>
+</html>

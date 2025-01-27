@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salaries</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+      /* General Styling */
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    padding: 20px;
+    text-align: center;
+}
+
+/* Search Bar */
+#search-bar {
+    width: 50%;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #007bff;
+    color: white;
+}
+
+td {
+    color: #555;
+}
+
+/* Buttons */
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Back to Dashboard Button */
+#back-to-dashboard {
+    display: block;
+    margin: 20px auto;
+    background-color: #28a745;
+}
+
+#back-to-dashboard:hover {
+    background-color: #218838;
+}
+
+/* Edit Form */
+#edit-form-section {
+    margin-top: 30px;
+    text-align: left;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#edit-form label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+}
+
+#edit-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Employee Salaries</h1>
+    </header>
+
+    <main>
+        <p>View and manage detailed salary records for all employees.</p>
+
+        <!-- Search and Filter Section -->
+        <section id="search-section">
+            <input
+                type="text"
+                id="search-bar"
+                placeholder="Search by employee name or job title"
+                onkeyup="filterTable()"
+            />
+        </section>
+
+        <!-- Table for Employee Salaries -->
+        <section id="salary-section">
+            <h2>Salary Records</h2>
+            <table id="salary-table">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Job Title</th>
+                        <th>Salary</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>Software Engineer</td>
+                        <td>$85,000</td>
+                        <td><button onclick="editSalary('John Doe', 'Software Engineer', '$85,000')">Edit</button></td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>Project Manager</td>
+                        <td>$95,000</td>
+                        <td><button onclick="editSalary('Jane Smith', 'Project Manager', '$95,000')">Edit</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Edit Salary Form -->
+        <section id="edit-form-section" style="display: none;">
+            <h2>Edit Salary</h2>
+            <form id="edit-form" onsubmit="updateSalary(event)">
+                <label for="employee-name">Employee Name:</label>
+                <input type="text" id="employee-name" name="employee-name" readonly />
+
+                <label for="job-title">Job Title:</label>
+                <input type="text" id="job-title" name="job-title" readonly />
+
+                <label for="new-salary">New Salary:</label>
+                <input type="text" id="new-salary" name="new-salary" required />
+
+                <button type="submit">Update Salary</button>
+                <button type="button" onclick="cancelEdit()">Cancel</button>
+            </form>
+        </section>
+
+        <!-- Back to Dashboard Button -->
+        <button id="back-to-dashboard" onclick="goBack()">Back to Dashboard</button>
+    </main>
+
+
+    <script>
+      // Function to navigate back to the dashboard Navigate back to the dashboard
+function goBack() {
+    window.location.href = "payroll.html"; // Replace with the dashboard page URL
+}
+
+// Filter the table based on search input
+function filterTable() {
+    const searchInput = document.getElementById("search-bar").value.toLowerCase();
+    const rows = document.querySelectorAll("#salary-table tbody tr");
+
+    rows.forEach(row => {
+        const name = row.cells[0].textContent.toLowerCase();
+        const jobTitle = row.cells[1].textContent.toLowerCase();
+
+        if (name.includes(searchInput) || jobTitle.includes(searchInput)) {
+            row.style.display = ""; // Show row
+        } else {
+            row.style.display = "none"; // Hide row
+        }
+    });
+}
+
+// Show the edit form with pre-filled data
+function editSalary(name, jobTitle, salary) {
+    document.getElementById("employee-name").value = name;
+    document.getElementById("job-title").value = jobTitle;
+    document.getElementById("new-salary").value = salary;
+
+    document.getElementById("edit-form-section").style.display = "block";
+}
+
+// Cancel editing and hide the form
+function cancelEdit() {
+    document.getElementById("edit-form-section").style.display = "none";
+}
+
+// Update salary record
+function updateSalary(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("employee-name").value;
+    const newSalary = document.getElementById("new-salary").value;
+
+    // Find the corresponding row in the table and update the salary
+    const rows = document.querySelectorAll("#salary-table tbody tr");
+    rows.forEach(row => {
+        if (row.cells[0].textContent === name) {
+            row.cells[2].textContent = newSalary;
+        }
+    });
+
+    // Hide the form after updating
+    cancelEdit();
+}
+    </script>
+</body>
+</html>
